@@ -3,4 +3,9 @@ class HomeController < ApplicationController
         @qr = RQRCode::QRCode.new("Hi Maggie! - Love, Drew")
     end
     
+
+    def debug
+        puts "============ DEBUG ============"
+        puts params
+    end
 end

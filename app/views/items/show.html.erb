@@ -17,11 +17,16 @@
 </p>
 
 <p>
+  <strong>Pay Link:</strong>
+  <%= link_to "Buy #{@item.name}", controller:'pay', action:'show', id:@item.id %>
+</p>
+
+<p>
   <strong>Picture url:</strong>
   <%= @item.picture_url %>
   <br>
-  
 </p>
+
 <center>
 <p>
   <img class="item-picture" src="<%= @item.picture_url %>"/>

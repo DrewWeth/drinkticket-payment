@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Source created at:</strong>
+  <%= @receipt.source_created_at %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @receipt.source_id %>
+</p>
+
+<p>
+  <strong>Payer:</strong>
+  <%= @receipt.payer %>
+</p>
+
+<p>
+  <strong>Payer:</strong>
+  <%= @receipt.payer_id %>
+</p>
+
+<p>
+  <strong>Pay amount:</strong>
+  <%= @receipt.pay_amount %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @receipt.data %>
+</p>
+
+<%= link_to 'Edit', edit_receipt_path(@receipt) %> |
+<%= link_to 'Back', receipts_path %>
