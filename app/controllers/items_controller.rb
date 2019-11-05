@@ -12,16 +12,10 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    # @qr = RQRCode::QRCode.new('http://github.com')
-    # @svg = @qr.as_ansi(
-    #   light: "\033[47m", dark: "\033[40m",
-    #   fill_character: '  ',
-    #   quiet_zone_size: 4
-    # )
-
-    @qr = RQRCode::QRCode.new("Hi Maggie! - Love, Drew")
+    @qr = RQRCode::QRCode.new("https://vast-savannah-03702.herokuapp.com/pay/#{params[:id]}")
     puts @qr
   end
+
 
   # GET /items/new
   def new

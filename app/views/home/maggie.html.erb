@@ -1,0 +1,18 @@
+
+
+
+<div class="qr-container">
+  <table class="qr">
+  <% @qr.modules.each do |x| %>
+      <tr>
+        <% x.each do |y| %>
+            <% if y %>
+                <td class="black"/>
+            <% else %>
+                <td class="white"/>
+            <% end %>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+</div>
