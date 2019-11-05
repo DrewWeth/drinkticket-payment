@@ -16,6 +16,10 @@ class ItemsController < ApplicationController
     puts @qr
   end
 
+  def confirm
+    @item = Item.find(params[:id])
+    @qr = RQRCode::QRCode.new("https://vast-savannah-03702.herokuapp.com/confirm/#{params[:id]}")
+  end
 
   # GET /items/new
   def new
@@ -41,6 +45,7 @@ class ItemsController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json

@@ -1,11 +1,8 @@
-
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
-
+<center>
+<h1>You purchased <%= @item.name %>!!</h1>
+<%= link_to 'Back to original item', @item %>
 <p>
   <strong>Desc:</strong>
   <%= @item.desc %>
@@ -17,24 +14,12 @@
 </p>
 
 <p>
-  <strong>Pay Link:</strong>
-  <%= link_to "Buy #{@item.name}", controller:'pay', action:'show', id:@item.id %>
-</p>
-
-<p>
-  <strong>Picture url:</strong>
-  <%= @item.picture_url %>
-  <br>
-</p>
-
-<center>
-<p>
   <img class="item-picture" src="<%= @item.picture_url %>"/>
   </p>
 
 <div style="border: 1px solid #bbb;padding:20px">
-<h3>Scan this code with your camera app to purchase</h3>
-<div class="qr-container">
+<h3>Have the attendent scan this code to retrive your <%= @item.name %></h3>
+  <div class="qr-container">
   <table class="qr">
   <% @qr.modules.each do |x| %>
       <tr>
@@ -50,6 +35,4 @@
 </table>
 </div>
 </div>
-</center>
-
-<%= link_to 'Back', items_path %>
+  </center>

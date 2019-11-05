@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
   get '/maggie', to: 'home#maggie'
   get '/debug', to: 'home#debug'
+  get '/confirm/:id', to: 'items#confirm'
   root to: "home#index"
 end
