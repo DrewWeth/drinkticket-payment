@@ -41,6 +41,7 @@
 
 // document.addEventListener("DOMContentLoaded", function() {
     // console.log("DOM loaded")
+setTimeout(function(){
 
     paypal.Buttons({
         style: {
@@ -66,5 +67,6 @@
             });
         }
     }).render('#paypal-button-container');
+}, 100)
 // });
 </script>
