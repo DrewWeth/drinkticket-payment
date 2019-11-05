@@ -1,0 +1,49 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @item.desc %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  $<%= @item.price %>
+</p>
+
+<p>
+  <strong>Picture url:</strong>
+  <%= @item.picture_url %>
+  <br>
+  
+</p>
+<center>
+<p>
+  <img class="item-picture" src="<%= @item.picture_url %>"/>
+  </p>
+
+<div class="qr-container">
+  <table class="qr">
+  <% @qr.modules.each do |x| %>
+      <tr>
+        <% x.each do |y| %>
+            <% if y %>
+                <td class="black"/>
+            <% else %>
+                <td class="white"/>
+            <% end %>
+        <% end %>
+      </tr>
+  <% end %>
+</table>
+</div>
+</center>
+
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
