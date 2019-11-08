@@ -10,6 +10,26 @@
   </head>
 
   <body>
+  <style>
+  .navbar{
+    display:flex;
+    /* justify-content:space-between; */
+    flex-direction:row;
+  }
+  .navbar > a {
+    margin-right: 20px;
+  }
+  .flex-item{
+
+  }
+  </style>
+  <div class="navbar">
+  <%= link_to 'Home', '/'%>
+  <%= link_to 'Items', '/items' %>
+  <%= link_to 'Receipts', '/receipts' %>
+  <%= current_user ? (link_to 'Log out', destroy_user_session_path, method: 'delete') : (link_to 'Log in', new_user_session_path) %>
+  
+  </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
