@@ -7,6 +7,8 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string :picture_url
       t.integer :group_id
       t.integer :changed_by_user_id
+      t.boolean :listed
+      t.boolean :hidden
       t.timestamps
     end
   end
