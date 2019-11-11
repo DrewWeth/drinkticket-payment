@@ -5,5 +5,19 @@
   <%= @group.name %>
 </p>
 
+<p>
+  <strong>User count:</strong>
+  <%= @users.length %>
+</p>
+
+<% if is_admin == true %>
+<p>
+  <strong>User count:</strong>
+  <% @users.each do |user| %>
+    <div><%= user.email %></div>
+  <% end %>
+</p>
+<% end %>
+
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

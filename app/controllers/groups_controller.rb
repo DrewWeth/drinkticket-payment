@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @users = @group.users
   end
 
   # GET /groups/new
@@ -19,6 +20,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+    redirect_to '/403' and return unless can_edit?
   end
 
   # POST /groups
@@ -40,6 +42,7 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
+    redirect_to '/403' and return unless can_edit?
     respond_to do |format|
       if @group.update(group_params)
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
@@ -54,6 +57,7 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
+    redirect_to '/403' and return unless can_edit?
     @group.destroy
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
@@ -70,5 +74,9 @@ class GroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).permit(:name)
+    end
+
+    def can_edit?
+      current_user && current_user.groups.map{ |g| g.id}.to_set.include?(params[:id])
     end
 end

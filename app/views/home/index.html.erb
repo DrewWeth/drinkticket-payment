@@ -1,3 +1,4 @@
 
 <div><%= Time.now() %></div>
-<div><%= current_user.inspect || 'Not logged in' %></div>
+<div><%= current_user ? current_user.inspect : 'Not logged in' %></div>
+<div><%= is_admin ? "ADMIN credentials" : "" %></div>
