@@ -1,40 +1,72 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Items</h1>
+<h1>Your Items</h1>
 
+<%= link_to 'New Item', new_item_path %>
+<% if true == false %>
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Desc</th>
+      <th>Description</th>
       <th>Price</th>
-      <th>Picture url</th>
+      <th>Picture URL</th>
       <th>Hidden</th>
       <th>Listed</th>
-      <th>Group ID</th>
-      <th colspan="3"></th>
+      <% if is_admin %><th>Group ID</th><% end %>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.desc %></td>
-        <td><%= item.price %></td>
-        <td><%= item.picture_url %></td>
-        <td><%= item.hidden %></td>
-        <td><%= item.listed %></td>
-        <td><%= item.group_id %></td>
-        <td><%= link_to 'Show', item %></td>
-        <%# <% if @groups.include?(item.group_id) %> 
-          <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <%# <% end %> 
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.desc %></td>
+      <td><%= format_money(item.price) %></td>
+      <td><%= item.picture_url %></td>
+      <td><%= item.hidden %></td>
+      <td><%= item.listed %></td>
+      <% if is_admin %><td><%= item.group_id %></td><% end %>
+      <td><%= link_to 'Checkout', "/checkout/#{item.id}", "data-turbolinks" => "false" %></td>
+      <td><%= link_to 'Show', item %></td>
+      <td><%= link_to 'Edit', edit_item_path(item) %></td>
+      <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
 <br>
+<% end %>
 
-<%= link_to 'New Item', new_item_path %>
+<div class="cards">
+
+  <div class="grid">
+    <% @items.each do |item| %>
+    <div class="card<%= item.hidden ? ' is-hidden' : '' %><%= item.listed && !item.hidden ? ' is-live' : '' %>">
+      <div class="top-right"><%= format_money(item.price) %></div>
+      <h1><%= item.name %></h1>
+      <img class="article-img" src="<%= item.picture_url %>"/>
+      <p>
+        <%= item.desc %>
+
+      </p>
+      <p>
+        <div>
+        <%= item.hidden ? 'Hidden' : 'Not hidden' %>
+      </div>
+      <div>
+        <%= item.listed ? 'Listed' : 'Not listed' %>
+      </div>
+      </p>
+      <div>
+        <%= link_to 'Checkout', "/checkout/#{item.id}", "data-turbolinks" => "false" %>
+        <%= link_to 'Show', item %>
+        <%= link_to 'Edit', edit_item_path(item) %>
+        <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+    <% end %>
+    
+  </div>
+</div>

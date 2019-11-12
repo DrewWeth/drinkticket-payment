@@ -6,7 +6,9 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.where(group_id: current_user.groups.pluck(:id).uniq)
+
+    # @items = Item.all
     @groups = current_user ? current_user.groups.map{ |g| g.id }.to_set : Set.new()
   end
 
@@ -14,7 +16,7 @@ class ItemsController < ApplicationController
   # GET /items/1.json
   def show
     @qr = RQRCode::QRCode.new("https://vast-savannah-03702.herokuapp.com/pay/#{params[:id]}")
-    puts @qr
+    # puts @qr
   end
 
   def confirm
@@ -36,6 +38,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
+    # @item.group = user.groups
 
     respond_to do |format|
       if @item.save

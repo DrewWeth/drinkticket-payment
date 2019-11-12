@@ -1,3 +1,4 @@
+<%= link_to 'Back', items_path %>
 
 <p id="notice"><%= notice %></p>
 
@@ -13,7 +14,7 @@
 
 <p>
   <strong>Price:</strong>
-  $<%= @item.price %>
+  <%= format_money(@item.price) %>
 </p>
 
 <p>
@@ -52,4 +53,3 @@
 </div>
 </center>
 
-<%= link_to 'Back', items_path %>

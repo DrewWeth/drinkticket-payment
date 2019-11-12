@@ -1,37 +1,52 @@
 <%= form_with(model: item, local: true) do |form| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+<% if item.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
 
-      <ul>
-        <% item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% item.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+<div class="field">
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+</div>
 
-  <div class="field">
-    <%= form.label :desc %>
-    <%= form.text_field :desc %>
-  </div>
+<div class="field">
+  <%= form.label :desc %>
+  <%= form.text_field :desc %>
+</div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
+<div class="field">
+  <%= form.label :price %>
+  <%= form.text_field :price %>
+</div>
 
-  <div class="field">
-    <%= form.label :picture_url %>
-    <%= form.text_field :picture_url %>
-  </div>
+<div class="field">
+  <%= form.label :picture_url %>
+  <%= form.text_field :picture_url %>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="field">
+  <%= form.label :group_id %>
+  <%= form.select :group_id, current_user.groups.pluck(:name,:id) %>
+</div>
+
+<div class="field">
+  <%= form.label :hidden %>
+  <%= form.check_box :hidden %>
+</div>
+
+<div class="field">
+  <%= form.label :listed %>
+  <%= form.check_box :listed %>
+</div>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
 <% end %>
