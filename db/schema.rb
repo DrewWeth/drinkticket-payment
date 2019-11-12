@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 2019_11_09_005113) do
     t.string "picture_url"
     t.integer "group_id"
     t.integer "changed_by_user_id"
-    t.boolean "listed"
-    t.boolean "hidden"
+    t.boolean "listed", default: false
+    t.boolean "hidden", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

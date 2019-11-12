@@ -13,8 +13,8 @@
 u1 = User.create :email => "admin@example.com", :password => "test123", is_admin: true
 g1 = Group.create name: 'Test Group'
 u1.groups << g1
-i1 = Item.create name:'Test item 1', price: 50, group_id: g1.id
-i2 = Item.create name:'Test item 2', price: 42, group_id: g1.id
+i1 = Item.create name:'Test item 1', price: 42, group_id: g1.id, picture_url: "https://static.vinepair.com/wp-content/uploads/2019/08/weasked10_header-2.jpg"
+i2 = Item.create name:'Test item 2', price: 3, group_id: g1.id, picture_url: "https://images-na.ssl-images-amazon.com/images/I/51uJdR27f7L.jpg"
 
 
 u2 = User.create :email => "user@example.com", :password => "test123"
