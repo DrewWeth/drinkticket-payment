@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @transaction.user_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @transaction.status %>
+</p>
+
+<p>
+  <strong>User email:</strong>
+  <%= @transaction.user_email %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @transaction.amount %>
+</p>
+
+<p>
+  <strong>Payer:</strong>
+  <%= @transaction.payer_id %>
+</p>
+
+<p>
+  <strong>Pay source:</strong>
+  <%= @transaction.pay_source %>
+</p>
+
+<p>
+  <strong>Pay source status:</strong>
+  <%= @transaction.pay_source_status %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @transaction.data %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Back', transactions_path %>
