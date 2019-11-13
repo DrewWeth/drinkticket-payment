@@ -8,19 +8,22 @@ class PayController < ApplicationController
     def handlePayment
         puts "*********** BODY ***********"
         input = JSON.parse request.body.read
+        details = input["details"]
+        user_id = input["userId"]
 
-        payer_status = input["status"]
+        payer_status = details["status"]
         our_status = payer_status == "COMPLETED" ? "UNCONFIRMED" : "ERROR"
 
         receipt = Receipt.create( 
+            user_id: user_id,
             status: our_status,
-            user_email: input["payer"]["email_address"],
-            amount: input["purchase_units"].map{ |u| u["amount"]["value"] }.sum,
-            payer_id: input["payer"]["payer_id"],
-            source_transaction_id: input["id"],
-            pay_source_status: payer_status
+            user_email: details["payer"]["email_address"],
+            amount: details["purchase_units"].map{ |u| u["amount"]["value"] }.sum,
+            payer_id: details["payer"]["payer_id"],
+            source_transaction_id: details["id"],
+            pay_source_status: payer_status,
             pay_source: 'paypal',
-            data: input
+            data: details
         )
 
         redirect_to receipt

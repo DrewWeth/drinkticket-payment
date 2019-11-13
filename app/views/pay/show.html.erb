@@ -1,5 +1,6 @@
 <input type="hidden" id="item_id" name="item_id" value="<%= @item.id %>">
 <input type="hidden" id="item_value" name="item_value" value="<%= @item.price %>">
+<input type="hidden" id="user_id" name="user_id" value="<%= current_user ? current_user.id : '' %>">
 
 <div class="width-container">
   <div class="box-container">
@@ -46,6 +47,7 @@
   function paypalFn() {
     const itemValue = document.getElementById('item_value').getAttribute("value");
     const itemId = document.getElementById('item_id').getAttribute("value");
+    const userId = document.getElementById('user_id').getAttribute("value");
 
     paypal.Buttons({
       style: {
@@ -67,15 +69,17 @@
       onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
           console.log(details)
+          const payload = {userId, details}
+
           fetch(`/pay/${itemId}`, {
             method: 'POST',
             cache: 'no-cache',
             redirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(details)
+            body: JSON.stringify(payload)
           }).then(r => {
             console.log(r)
-            window.location.href = e.url
+            window.location.href = r["url"]
             // window.location.href = `/confirm/${itemId}`; //relative to domain
           }).catch(e => {
             console.log(e)
