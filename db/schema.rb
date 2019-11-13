@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_005113) do
+ActiveRecord::Schema.define(version: 2019_11_12_235929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,12 +40,38 @@ ActiveRecord::Schema.define(version: 2019_11_09_005113) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "items_receipts", id: false, force: :cascade do |t|
+    t.bigint "receipt_id", null: false
+    t.bigint "item_id", null: false
+  end
+
+  create_table "items_transactions", id: false, force: :cascade do |t|
+    t.bigint "transaction_id", null: false
+    t.bigint "item_id", null: false
+  end
+
   create_table "receipts", force: :cascade do |t|
-    t.datetime "source_created_at"
-    t.integer "source_id"
-    t.string "payer"
+    t.integer "user_id"
+    t.string "status"
+    t.string "user_email"
+    t.float "amount"
     t.string "payer_id"
-    t.float "pay_amount"
+    t.string "pay_source"
+    t.string "pay_source_status"
+    t.json "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "source_transaction_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "status"
+    t.string "user_email"
+    t.float "amount"
+    t.string "payer_id"
+    t.string "pay_source"
+    t.string "pay_source_status"
     t.json "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

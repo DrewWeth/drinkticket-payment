@@ -75,9 +75,10 @@
             body: JSON.stringify(details)
           }).then(r => {
             console.log(r)
+            window.location.href = e.url
             // window.location.href = `/confirm/${itemId}`; //relative to domain
           }).catch(e => {
-            consol.log(e)
+            console.log(e)
           })
           // Redirect to "Save details endpoint"
           // That endpoint will do the server side redirect

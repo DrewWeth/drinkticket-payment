@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
+    redirect_to new_user_session_path and return if not current_user 
     @items = Item.where(group_id: current_user.groups.pluck(:id).uniq)
 
     # @items = Item.all
