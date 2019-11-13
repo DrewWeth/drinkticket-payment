@@ -6,7 +6,7 @@ class CreateTransactions < ActiveRecord::Migration[6.0]
       t.string :user_email
       t.float :amount
       t.string :payer_id
-      t.string, :pay_source
+      t.string :pay_source
       t.string :pay_source_status
       t.json :data
 
